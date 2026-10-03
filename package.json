@@ -1,0 +1,22 @@
+{
+  "name": "nong-pordee-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node build.mjs --serve",
+    "start": "node build.mjs --serve",
+    "build": "node build.mjs",
+    "forecast": "python3 forecast_model.py && cp py_model.json src/data/py.json",
+    "deploy": "sh deploy.sh"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

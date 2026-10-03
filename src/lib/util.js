@@ -1,0 +1,14 @@
+export const dte = s => { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+export const iso = d => d.toISOString().slice(0, 10);
+export const daysBetween = (a, b) => Math.round((dte(b) - dte(a)) / 864e5);
+export const addDays = (s, n) => { const d = dte(s); d.setUTCDate(d.getUTCDate() + n); return iso(d); };
+export const isoDow = s => dte(s).getUTCDay();
+export const nf = n => Math.round(n).toLocaleString('en-US');
+export const nf1 = n => (Math.round(n * 10) / 10).toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+export const baht = n => '฿' + nf(n);
+export const baht2 = n => '฿' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+export const pct = (n, d = 1) => (n >= 0 ? '+' : '−') + Math.abs(n).toFixed(d) + '%';
+export const sum = a => a.reduce((x, y) => x + y, 0);
+export const mean = a => (a.length ? sum(a) / a.length : 0);
+export const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+export const csvEsc = v => { const s = String(v == null ? '' : v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
